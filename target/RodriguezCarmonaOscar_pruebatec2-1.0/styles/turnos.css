@@ -1,0 +1,9 @@
+.main-turnos {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+section {
+	width: 80%;
+}
