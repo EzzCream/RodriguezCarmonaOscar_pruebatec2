@@ -1,6 +1,7 @@
 package com.hackaboss.persistencia;
 
 import com.hackaboss.logica.Ciudadano;
+import com.hackaboss.logica.Usuario;
 import com.hackaboss.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
@@ -133,5 +134,20 @@ public class CiudadanoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public Ciudadano getCiudadanoByCurp(String curp) {
+        EntityManager em = getEntityManager();
+        try{
+            String jpql = "SELECT u FROM Ciudadano u WHERE u.curp = :curp";
+            Query query = em.createQuery(jpql, Ciudadano.class);
+            query.setParameter("curp", curp);
+            query.setMaxResults(1);
+            return (Ciudadano) query.getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
+        finally {
+            em.close();
+        }
+    }
 }

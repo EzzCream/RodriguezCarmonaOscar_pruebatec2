@@ -37,6 +37,9 @@ public class LoginSv extends HttpServlet {
             response.sendRedirect("pages/ciudadanoMenu.jsp");
         }else{
             response.sendRedirect("../index.jsp");
+//            response.sendRedirect("./pages/actualizarCiudadano.jsp");
+
+
         }
 
     }

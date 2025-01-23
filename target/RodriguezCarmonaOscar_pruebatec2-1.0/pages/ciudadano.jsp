@@ -28,25 +28,27 @@
 						<label for="nombre" class="form-label mt-3"
 							>Nombre
 						</label>
-						<input name="nombre" type="text" name="nombre" class="form-control" id="" />
+						<input name="nombre" type="text" class="form-control" id="nombre" />
 
 						<label for="apellido" class="form-label mt-3"
 							>Apellido
 						</label>
-						<input name="apellido" type="text" name="nombre" class="form-control" id="" />
+						<input name="apellido" type="text" class="form-control" id="apellido" />
 
 						<label for="telefono" class="form-label mt-3"
 							>Telefono
 						</label>
-						<input name="telefono" type="text" class="form-control" id="" />
+						<input name="telefono" type="text" class="form-control" id="telefono" />
 
 						<label for="email" class="form-label mt-3">
 							Email
 						</label>
-						<input name="email" type="email" class="form-control" id="" />
+						<input name="email" type="email" class="form-control" id="email" />
 
-						<label for="CURP" class="form-label mt-3">CURP</label>
-						<input name="CURP" type="text" class="form-control" id="" />
+						<label for="curp" class="form-label mt-3">
+							CURP
+						</label>
+						<input name="curp" type="text" class="form-control" id="curp" />
 
 						<button type="submit" class="btn btn-primary mt-3">
 							Agregar Ciudadano
@@ -59,7 +61,7 @@
 						<label for="curp" class="form-label mt-3"
 						>CURP
 						</label>
-						<input name="curp" type="text" name="curp" class="form-control" id="curp" />
+						<input type="text" name="curp" class="form-control" id="curp" />
 						<button type="submit" class="btn btn-primary mt-3">
 							Buscar
 						</button>
@@ -78,7 +80,7 @@
 						<tbody>
 							<%
 								List<Ciudadano> listaCiudadanos = (List) request.getSession().getAttribute("listaCiudadanos");
-//								if(listaCiudadanos != null ){
+								if(listaCiudadanos != null ){
 									for(Ciudadano ciud : listaCiudadanos){
 							%>
 							<tr>
@@ -90,19 +92,9 @@
 								<td><button class="btn btn-primary">Actualizar</button></td>
 							</tr>
 							<%
-//									}
+									}
 								}
 							%>
-							<tr>
-								<td>Juan Pérez</td>
-								<td>30</td>
-								<td>Madrid</td>
-							</tr>
-							<tr>
-								<td>María López</td>
-								<td>25</td>
-								<td>Barcelona</td>
-							</tr>
 						</tbody>
 					</table>
 				</section>

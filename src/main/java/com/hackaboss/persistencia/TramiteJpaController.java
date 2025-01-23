@@ -1,30 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.hackaboss.persistencia;
 
 import com.hackaboss.logica.Tramite;
+import com.hackaboss.logica.Usuario;
 import com.hackaboss.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-/**
- *
- * @author ezzcr
- */
 public class TramiteJpaController implements Serializable {
 
     public TramiteJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
+
+    public TramiteJpaController(){
+        emf = Persistence.createEntityManagerFactory("ciudadanoJspPU");
+    }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -133,5 +127,20 @@ public class TramiteJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public Tramite getTramiteByName(String nombreTramite) {
+        EntityManager em = getEntityManager();
+        try{
+            String jpql = "SELECT u FROM Tramite u WHERE u.nombreTramite = :nombreTramite";
+            Query query = em.createQuery(jpql, Usuario.class);
+            query.setParameter("nombreTramite", nombreTramite);
+            query.setMaxResults(1);
+            return (Tramite) query.getSingleResult();
+        }catch(NoResultException e){
+            return null;
+        }
+        finally {
+            em.close();
+        }
+    }
 }

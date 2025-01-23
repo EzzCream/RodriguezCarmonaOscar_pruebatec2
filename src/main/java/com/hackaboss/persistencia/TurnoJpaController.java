@@ -4,14 +4,12 @@
  */
 package com.hackaboss.persistencia;
 
+import com.hackaboss.logica.Ciudadano;
 import com.hackaboss.logica.Turno;
 import com.hackaboss.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -24,6 +22,11 @@ public class TurnoJpaController implements Serializable {
     public TurnoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
+    public TurnoJpaController() {
+        emf = Persistence.createEntityManagerFactory("ciudadanoJspPU");
+    }
+
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -133,5 +136,19 @@ public class TurnoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    //Busca todos las filas de la tabla Turno y las ordena por fecha
+    public List<Turno> findAll() {
+        String jpql = "SELECT u FROM Turno u ORDER BY u.fecha ASC";
+        TypedQuery<Turno> query = getEntityManager().createQuery(jpql, Turno.class);
+        return query.getResultList();
+    }
+
+    //Busca todas las filas de la tabla Turno que tengan Ya atendido o En espera, dependiendo de la eleccion
+    public List<Turno> findTurnoByEstado(String estado) {
+        String jpql = "SELECT u FROM Turno u WHERE u.estado = :estado ORDER BY u.fecha ASC";
+        TypedQuery<Turno> query = getEntityManager().createQuery(jpql, Turno.class);
+        query.setParameter("estado", estado);
+        return query.getResultList();
+    }
 }

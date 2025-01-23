@@ -1,3 +1,4 @@
+com\hackaboss\servlets\TramiteSv.class
 com\hackaboss\logica\exceptions\NonexistentEntityException.class
 com\hackaboss\servlets\TurnoSv.class
 com\hackaboss\persistencia\ControladoraPersistencia.class
@@ -14,6 +15,7 @@ com\hackaboss\persistencia\TurnoJpaController.class
 com\hackaboss\servlets\CiudadanoSv.class
 com\hackaboss\logica\Usuario.class
 com\hackaboss\logica\Tramite.class
+utils\FechaUtil.class
 com\hackaboss\logica\Ciudadano.class
 com\hackaboss\logica\Turno.class
 com\hackaboss\persistencia\exceptions\NonexistentEntityException.class

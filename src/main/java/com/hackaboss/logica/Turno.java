@@ -33,6 +33,18 @@ public class Turno implements Serializable {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario idUsuario;
 
+    public Turno() {
+    }
+
+    public Turno(Integer numeroTurno, LocalDate fecha, String estado, Ciudadano idCiudadano, Tramite idTramite, Usuario idUsuario) {
+        this.numeroTurno = numeroTurno;
+        this.fecha = fecha;
+        this.estado = estado;
+        this.idCiudadano = idCiudadano;
+        this.idTramite = idTramite;
+        this.idUsuario = idUsuario;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -18,6 +18,14 @@ public class Tramite implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
+    public Tramite() {
+    }
+
+    public Tramite(String nombreTramite, String descripcion) {
+        this.nombreTramite = nombreTramite;
+        this.descripcion = descripcion;
+    }
+
     public Integer getId() {
         return id;
     }

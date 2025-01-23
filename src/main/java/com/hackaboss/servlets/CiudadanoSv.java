@@ -30,7 +30,6 @@ public class CiudadanoSv extends HttpServlet {
         HttpSession sesion = request.getSession();
         sesion.setAttribute("listaCiudadanos", listaCiudadanos);
         response.sendRedirect("pages/ciudadanoMenu.jsp");
-
     }
 
     @Override
@@ -42,7 +41,8 @@ public class CiudadanoSv extends HttpServlet {
             String apellido = request.getParameter("apellido");
             String email = request.getParameter("email");
             String telefono = request.getParameter("telefono");
-            String curp = request.getParameter("CURP");
+            String curp = request.getParameter("curp");
+        System.out.println(curp);
             controladoraLogica.crearCiudadano(nombre, apellido, email, telefono, curp);
             List<Ciudadano> listaCiudadanos = controladoraLogica.listarCiudadanos(curp);
             HttpSession sesion = request.getSession();

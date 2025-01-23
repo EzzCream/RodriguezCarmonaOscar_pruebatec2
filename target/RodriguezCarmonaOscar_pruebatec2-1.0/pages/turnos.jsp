@@ -26,32 +26,29 @@ import="java.util.List" %>
 		<main class="mt-4 main-turnos">
 			<h2 class="display-4">Turnos</h2>
 			<section>
-				<form action="">
+				<a class="btn btn-primary" href="./crearTurno.jsp" role="button">Crear</a>
+				<form action="../TurnoSv" method="post">
 					<label for="" class="form-label"
 						>Buscar turno</label
 					>
-					<select
-						class="form-select"
-						aria-label="Default select example"
-					>
-						<option selected>Open this select menu</option>
-						<option value="En espera">En espera</option>
-						<option value="Ya atendido">Ya atendido</option>
-					</select>
+					<input name="estado" type="text" name="estado" class="form-control" id="estado" placeholder="'En espera - Ya atendido'" />
+					<button type="submit" class="btn btn-primary mt-3">
+						Buscar
+					</button>
 				</form>
-				<form action="">
-					<button class="btn btn-primary">Ver todos</button>
+				<form action="../TurnoSv" method="get">
+					<button type="submit" class="btn btn-primary">Ver todos</button>
 				</form>
 			</section>
 			<section>
-				<table>
+				<table class="table">
 					<thead>
-						<th>Numero de turno</th>
-						<th>Fecha</th>
-						<th>Estado</th>
-						<th>Ciudadano</th>
-						<th>Tramite</th>
-						<th>Usuario</th>
+						<th scope="col">Numero de turno</th>
+						<th scope="col">Fecha</th>
+						<th scope="col">Estado</th>
+						<th scope="col">Ciudadano</th>
+						<th scope="col">Tramite</th>
+						<th scope="col">Usuario</th>
 					</thead>
 					<tbody>
 					<%
@@ -60,24 +57,12 @@ import="java.util.List" %>
 							for(Turno tur : listaTurnos){
 					%>
 					<tr>
-						<td><%= tur.getNombre() %></td>
-						<td><%= tur.getApellido() %></td>
-						<td><%= tur.getTelefono() %></td>
-						<td><%= tur.getEmail() %></td>
-						<td><%= tur.getCurp() %></td>
-						<td>
-							<form name="eliminar" action="../EliminarCiudadanoSv" method="POST">
-								<button class="btn btn-warning">Eliminar</button>
-								<input type="hidden" name="id" value="<%= ciud.getId()%>">
-								<input type="hidden" name="CURP" value="<%= ciud.getCurp()%>">
-							</form>
-						</td>
-						<td>
-							<form name="actualizar" action="../ActualizarCiudadanoSv" method="GET">
-								<button class="btn btn-primary">Actualizar</button>
-								<input type="hidden" name="id" value="<%= ciud.getId()%>">
-							</form>
-						</td>
+						<td><%= tur.getNumeroTurno() %></td>
+						<td><%= tur.getFecha() %></td>
+						<td><%= tur.getEstado() %></td>
+						<td><%= tur.getIdCiudadano().getNombre() %></td>
+						<td><%= tur.getIdTramite().getNombreTramite() %></td>
+						<td><%= tur.getIdUsuario().getId() %></td>
 					</tr>
 					<%
 							}
